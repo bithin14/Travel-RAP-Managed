@@ -7,8 +7,14 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
-define view entity ZI_BD_Travel_M
-  as select from /dmo/travel_m
+define root view entity ZI_BD_Travel_M
+  as select from /dmo/travel_m as Travel
+  composition [0..*] of ZI_BD_Booking_M               as _Booking
+  association [0..1] to /DMO/I_Agency                 as _Agency            on $projection.AgencyId = _Agency.AgencyID
+  association [0..1] to /DMO/I_Customer               as _Customer          on $projection.CustomerId = _Customer.CustomerID
+  association [0..1] to I_Currency                    as _Currency          on $projection.CurrencyCode = _Currency.Currency
+  association [0..1] to /DMO/I_Overall_Status_VH      as _OverallStatus     on $projection.OverallStatus = _OverallStatus.OverallStatus
+  association [0..*] to /DMO/I_Overall_Status_VH_Text as _OverallStatusText on $projection.OverallStatus = _OverallStatusText.OverallStatus
 {
   key travel_id       as TravelId,
       agency_id       as AgencyId,
@@ -25,5 +31,11 @@ define view entity ZI_BD_Travel_M
       created_by      as CreatedBy,
       created_at      as CreatedAt,
       last_changed_by as LastChangedBy,
-      last_changed_at as LastChangedAt
+      last_changed_at as LastChangedAt,
+      _Booking,
+      _Agency,
+      _Customer,
+      _Currency,
+      _OverallStatus,
+      _OverallStatusText
 }
