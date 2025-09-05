@@ -1,0 +1,6 @@
+@EndUserText.label: 'Travel Details'
+define service ZSD_BD_Travel {
+  expose ZC_BD_TRAVEL_M        as Travel;
+  expose ZC_BD_BOOKING_M       as Booking;
+  expose ZC_BD_BOOKING_SUPPL_M as BookingSuppliment;
+}

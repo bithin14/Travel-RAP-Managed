@@ -2,6 +2,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Booking Supplement Details'
 @Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
 @ObjectModel.usageType:{
     serviceQuality: #X,
     sizeCategory: #S,
