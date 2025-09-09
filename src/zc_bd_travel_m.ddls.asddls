@@ -9,11 +9,21 @@ define root view entity ZC_BD_TRAVEL_M
 {
   key TravelId,
       @ObjectModel.text.element: [ 'AgencyName' ]
+      @Consumption.valueHelpDefinition: [{
+          entity: {
+              name: '/DMO/I_Agency',
+              element: 'AgencyID'
+          }}]
       AgencyId,
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.8
       _Agency.Name              as AgencyName,
       @ObjectModel.text.element: [ 'CustomerName' ]
+      @Consumption.valueHelpDefinition: [{
+        entity: {
+            name: '/DMO/I_Customer',
+            element: 'CustomerID'
+        }}]
       CustomerId,
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.8
@@ -24,9 +34,19 @@ define root view entity ZC_BD_TRAVEL_M
       BookingFee,
       @Semantics.amount.currencyCode: 'CurrencyCode'
       TotalPrice,
+      @Consumption.valueHelpDefinition: [{
+        entity: {
+            name: 'I_Currency',
+            element: 'Currency'
+        }}]
       CurrencyCode,
       Description,
       @ObjectModel.text.element: [ 'OverallStatusText' ]
+      @Consumption.valueHelpDefinition: [{
+        entity: {
+            name: '/DMO/I_Overall_Status_VH',
+            element: 'OverallStatus'
+        }}]
       OverallStatus,
       _OverallStatus._Text.Text as OverallStatusText : localized,
       //      CreatedBy,
